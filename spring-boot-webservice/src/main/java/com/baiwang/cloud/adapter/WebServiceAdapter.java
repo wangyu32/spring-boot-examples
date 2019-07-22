@@ -1,7 +1,5 @@
 package com.baiwang.cloud.adapter;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 //import com.baiwang.knight.service.model.BodyModel;
 //import com.baiwang.knight.service.model.HeadModel;
 //import com.baiwang.knight.service.model.MessageType;
@@ -13,12 +11,17 @@ import com.alibaba.fastjson.JSONObject;
 //import com.baiwang.knight.service.util.json.JSONException;
 //import com.baiwang.knight.service.util.json.XML;
 //import com.baiwang.knight.service.util.json.XMLParserConfiguration;
+import com.baiwang.cloud.model.sign.Signature;
+import com.baiwang.cloud.util.JaxbUtil;
+import com.baiwang.cloud.util.NullUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
 
 /**
  * WebService适配器
@@ -34,7 +37,27 @@ public class WebServiceAdapter
 
     @WebMethod
     public String service(@WebParam(name = "service") String message) {
-        log.info("入参接收报文：{}", message);
+        log.info("请求报文：{}", message);
+
+        //1. message 非空校验
+        if(NullUtil.isNull(message)){
+            log.error("请求报文为空：{}", message);
+            return "请求报文为空";
+        }
+
+        try {
+            Signature signature = JaxbUtil.xmlToBean(message.trim(), Signature.class);
+            log.info("signature covert to xml : \n{}", JaxbUtil.beanToXml(signature));
+
+            //2.报文校验
+
+        } catch (JAXBException e) {
+            log.error("请求报文格式错误", e);
+            return "请求报文格式错误";
+        } catch (IOException e) {
+            log.error("请求报文格式错误", e);
+            return "请求报文格式错误";
+        }
         return "";
     }
 

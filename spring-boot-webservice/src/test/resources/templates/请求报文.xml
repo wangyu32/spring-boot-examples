@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+        <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <Reference URI="#001">
+        </Reference>
+    </SignedInfo>
+    <SignatureValue>MIIFiAYJKoZIhvcNAQcCoIIFeTCCBXUCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHAaCCB0HVZIChKEfL51n745VI0l1g8zeqH6utZd+GQ==</SignatureValue>
+    <KeyInfo>
+        <KeyName>95566SW09999999123</KeyName>
+    </KeyInfo>
+    <Object id="001">
+        <SignedData>
+            EU+PC9CVVNJTkVTU19UWVBFPjxEQlRfQ09ERVRZUEU+MzM8L0RCVF9D
+            T0RFVFlQRT48REJUX0NPREU+NzY2OTE4OTIzPC9EQlRfQ09ERT48RFJBQ0NfTk8+NDUzMzU4ODg3
+            ODgwPC9EUkFDQ19OTz48U1BUMT5odHRwOi8vMTE2LjIzNi4yMTIuMTU1OjgwMDEvdG1zX3NlcnZl
+            ci9QYXltZW50UmVzcFNlcnZsZXQ8L1NQVDE+PFNQVDI+PC9TUFQyPjxTUFQzPjwvU1BUMz48L0RS
+            QUNDX1FVUl9SRVFVRVNUPg=</SignedData>
+    </Object>
+</Signature>

@@ -1,4 +1,4 @@
-package com.baiwang.cloud.model.request;
+package com.baiwang.cloud.model.sign;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

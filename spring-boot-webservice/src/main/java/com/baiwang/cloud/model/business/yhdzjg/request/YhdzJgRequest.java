@@ -1,4 +1,4 @@
-package com.baiwang.cloud.model.request;
+package com.baiwang.cloud.model.business.yhdzjg.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,21 +10,19 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @Description
+ * @Description 银行对账结果请求
  * @Author wangyu
- * @Date 2019/7/19 10:51
+ * @Date 2019/7/22 15:02
  */
-@XmlRootElement(name = "SignedInfo")
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "REQUEST_YHDZ_JG")
+@XmlAccessorType(value = XmlAccessType.FIELD)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignedInfo {
+public class YhdzJgRequest {
 
-    @XmlElement(name = "SignatureMethod")
-    private SignatureMethod signatureMethod;
-
-    @XmlElement(name = "Reference")
-    private Reference reference;
+    //对账流水号
+    @XmlElement(name = "DZLSH")
+    private String dzlsh;
 
 }
