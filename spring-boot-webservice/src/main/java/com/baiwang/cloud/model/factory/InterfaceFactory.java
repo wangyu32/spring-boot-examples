@@ -1,4 +1,4 @@
-package com.baiwang.cloud.model.base.factory;
+package com.baiwang.cloud.model.factory;
 
 import com.baiwang.cloud.enums.InterfaceEnum;
 import com.baiwang.cloud.model.base.Data;
@@ -13,6 +13,9 @@ import com.baiwang.cloud.model.base.Interface;
 public class InterfaceFactory {
 
     private static final String DEFAULT_VERSION = "1.0";
+    private static final String CDATA_PREFIX = "<![CDATA[";
+    private static final String CDATA_SUFFIX = "]]>";
+
 
     private InterfaceFactory(){
     };

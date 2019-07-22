@@ -1,6 +1,10 @@
 package com.neo.test;
 
+import com.baiwang.cloud.common.util.Base64Util;
+import com.baiwang.cloud.common.util.RsaUtil;
+import com.baiwang.cloud.common.util.StringUtil;
 import com.baiwang.cloud.model.base.Interface;
+import com.baiwang.cloud.model.factory.InterfaceFactory;
 import com.baiwang.cloud.model.business.fpcx.request.FpcxRequest;
 import com.baiwang.cloud.model.business.fpcx.response.FpcxResponse;
 import com.baiwang.cloud.model.business.yhdzjg.request.YhdzJgRequest;
@@ -14,6 +18,8 @@ import com.baiwang.cloud.util.JaxbUtil;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 /**
  * @Description
@@ -313,7 +319,7 @@ public class XmlToJavaBeanTest {
     }
 
     private static void REQUEST_FPCXJS_1_encrypt_sign() throws Exception {
-        String xml =
+        String content =
                         "<REQUEST_FPCXJS>\n" +
                         "    <QQLSH>20190722-1001</QQLSH>\n" +
                         "    <NSRSBH>36996300000000039</NSRSBH>\n" +
@@ -328,11 +334,26 @@ public class XmlToJavaBeanTest {
                         "    </FPMXS>\n" +
                         "</REQUEST_FPCXJS>";
         try {
-            System.out.println(xml);
-            System.out.println("base64:");
+            System.out.println(content);
+            String base64Encrypt = Base64Util.encrypt(content);
+            System.out.println("base64 加密 : \n" + base64Encrypt);
+            String base64Decrypt = Base64Util.decrypt(base64Encrypt);
+            System.out.println("base64 解密 : \n" + base64Decrypt);
+
+            RsaUtil rsaUtil = RsaUtil.getTestInstance();
+            PublicKey publicKey = rsaUtil.getPublicKey();
+            PrivateKey privateKey = rsaUtil.getPrivateKey();
+            byte[] bytes = rsaUtil.rsaPrivateEncrypt(base64Encrypt.getBytes(), privateKey);
+            String stringPrivateEncrypt = StringUtil.byteToBase(bytes);
+            System.out.println("私钥加密后的数据："+ stringPrivateEncrypt);
+
+
+            Interface instance = InterfaceFactory.getFpcxDefaultInterfaceInstance(base64Encrypt);
+            String xml = JaxbUtil.beanToXml(instance);
+            System.out.println("beanToXml : \n" + xml);
+
             FpcxRequest bean = JaxbUtil.xmlToBean(xml, FpcxRequest.class);
             System.out.println(bean);
-            System.out.println(JaxbUtil.beanToXml(bean));
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {

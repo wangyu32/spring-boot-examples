@@ -282,6 +282,15 @@ public class RsaUtil {
         }
     }
 
+    public static RsaUtil getTestInstance() {
+        String certPath = "D://baiwang//cert//";
+        String certName = "invoice.pfx";
+        String certPass = "chinazxt";
+        RsaUtil rsaUtil = new RsaUtil(certPath+certName,certPass);
+        return rsaUtil;
+    }
+
+
     public static void main(String[] args) {
         String certPath = "D://baiwang//cert//";
         String certName = "invoice.pfx";
