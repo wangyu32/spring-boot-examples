@@ -1,0 +1,13 @@
+<REQUEST_FPCXJS>
+    <QQLSH>20190722-1001</QQLSH>
+    <NSRSBH>36996300000000039</NSRSBH>
+    <ZJE>123.45</ZJE>
+    <BB>CNY</BB>
+    <FPMXS size="1">
+        <FPMX>
+            <FPDM>152000186357</FPDM>
+            <FPHM>99870167</FPHM>
+            <JE>100.00</JE>
+        </FPMX>
+    </FPMXS>
+</REQUEST_FPCXJS>

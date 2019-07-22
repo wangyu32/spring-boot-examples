@@ -25,4 +25,11 @@ public class Interface {
 
     @XmlElement(name = "Data")
     private Data data;
+
+    public void setContent(String content){
+        if(this.data == null){
+            throw new RuntimeException("Data in Interface is null, can`t set content value");
+        }
+        this.data.setContent(content);
+    }
 }

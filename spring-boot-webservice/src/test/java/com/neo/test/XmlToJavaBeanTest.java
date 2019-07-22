@@ -31,6 +31,8 @@ public class XmlToJavaBeanTest {
 //        FPCXJS_RESPONSE_1();
 //        FPCXJS_RESPONSE_2();
 
+        REQUEST_FPCXJS_1_encrypt_sign();
+
 //        REQUEST_YWJG();
 //        RESPONSE_YWJG_1();
 //        RESPONSE_YWJG_2();
@@ -40,7 +42,7 @@ public class XmlToJavaBeanTest {
 
 //        REQUEST_YHDZ_JG();
 //        RESPONSE_YHDZ_JG_1();
-        RESPONSE_YHDZ_JG_2();
+//        RESPONSE_YHDZ_JG_2();
 
     }
 
@@ -285,21 +287,49 @@ public class XmlToJavaBeanTest {
 
     private static void REQUEST_FPCXJS_1() throws Exception {
         String xml =
-                "<REQUEST_FPCXJS>\n" +
-                "<QQLSH>请求流水号</QQLSH>\n" +
-                "<NSRSBH>纳税人识别号</NSRSBH>\n" +
-                "<ZJE>总结算金额</ZJE>\n" +
-                "<BB>币种</BB>\n" +
-                "<FPMXS size=\"1\">\n" +
-                "\t\t<FPMX>\n" +
-                "\t\t\t<FPDM>发票代码</FPDM>\n" +
-                "\t\t\t<FPHM>发票号码</FPHM>\n" +
-                "\t\t\t<JE>结算金额</JE>\n" +
-                "\t\t</FPMX>\n" +
-                "</FPMXS>\n" +
-                "</REQUEST_FPCXJS>";
+                        "<REQUEST_FPCXJS>\n" +
+                        "    <QQLSH>20190722-1001</QQLSH>\n" +
+                        "    <NSRSBH>36996300000000039</NSRSBH>\n" +
+                        "    <ZJE>123.45</ZJE>\n" +
+                        "    <BB>CNY</BB>\n" +
+                        "    <FPMXS size=\"1\">\n" +
+                        "        <FPMX>\n" +
+                        "            <FPDM>152000186357</FPDM>\n" +
+                        "            <FPHM>99870167</FPHM>\n" +
+                        "            <JE>100.00</JE>\n" +
+                        "        </FPMX>\n" +
+                        "    </FPMXS>\n" +
+                        "</REQUEST_FPCXJS>";
         try {
             System.out.println(xml);
+            FpcxRequest bean = JaxbUtil.xmlToBean(xml, FpcxRequest.class);
+            System.out.println(bean);
+            System.out.println(JaxbUtil.beanToXml(bean));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void REQUEST_FPCXJS_1_encrypt_sign() throws Exception {
+        String xml =
+                        "<REQUEST_FPCXJS>\n" +
+                        "    <QQLSH>20190722-1001</QQLSH>\n" +
+                        "    <NSRSBH>36996300000000039</NSRSBH>\n" +
+                        "    <ZJE>123.45</ZJE>\n" +
+                        "    <BB>CNY</BB>\n" +
+                        "    <FPMXS size=\"1\">\n" +
+                        "        <FPMX>\n" +
+                        "            <FPDM>152000186357</FPDM>\n" +
+                        "            <FPHM>99870167</FPHM>\n" +
+                        "            <JE>100.00</JE>\n" +
+                        "        </FPMX>\n" +
+                        "    </FPMXS>\n" +
+                        "</REQUEST_FPCXJS>";
+        try {
+            System.out.println(xml);
+            System.out.println("base64:");
             FpcxRequest bean = JaxbUtil.xmlToBean(xml, FpcxRequest.class);
             System.out.println(bean);
             System.out.println(JaxbUtil.beanToXml(bean));
@@ -357,11 +387,6 @@ public class XmlToJavaBeanTest {
                 "</Signature>\n";
 
         try {
-//            XStream xstream = new XStream();
-//            Signature signature1 = (Signature) xstream.fromXML(xml);
-
-//            Object object = JaxbUtil.xmlToBean(xml, Object.class);
-//            System.out.println(object);
             System.out.println(xml);
             Signature signature = JaxbUtil.xmlToBean(xml, Signature.class);
             System.out.println(signature);

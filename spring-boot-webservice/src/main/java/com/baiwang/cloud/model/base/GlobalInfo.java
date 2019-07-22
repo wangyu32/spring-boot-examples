@@ -27,5 +27,7 @@ public class GlobalInfo {
     @XmlElement(name = "interfaceCode")
     private String interfaceCode;
 
-
+    public GlobalInfo(String version) {
+        this.version = version;
+    }
 }
