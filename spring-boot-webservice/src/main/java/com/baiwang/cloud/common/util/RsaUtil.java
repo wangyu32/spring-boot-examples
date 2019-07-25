@@ -76,20 +76,20 @@ public class RsaUtil {
             publicKey = certificate.getPublicKey();
 
             //对证书、公钥、私钥数据进行输出
-            logger.info("is key entry:" + keyStore.isKeyEntry(keyAlias));
-            logger.info("cert class  : " + certificate.getClass().getName());
-            logger.info("certificate : " + certificate);
-            logger.info("public key  : " + publicKey);
-            logger.info("private key : " + privateKey);
-            DateFormat df = DateFormat.getDateTimeInstance();
-            logger.info("server cert start："+df.format(((X509Certificate)certificate).getNotAfter()));
-            logger.info("server cert end："+df.format(((X509Certificate)certificate).getNotBefore()));
+//            logger.info("is key entry:" + keyStore.isKeyEntry(keyAlias));
+//            logger.info("cert class  : " + certificate.getClass().getName());
+//            logger.info("certificate : " + certificate);
+//            logger.info("public key  : " + publicKey);
+//            logger.info("private key : " + privateKey);
+//            DateFormat df = DateFormat.getDateTimeInstance();
+//            logger.info("server cert start："+df.format(((X509Certificate)certificate).getNotAfter()));
+//            logger.info("server cert end："+df.format(((X509Certificate)certificate).getNotBefore()));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("加载证书文件，解析证书、公钥、私钥失败,失败原因:"+e.getMessage());
         } finally {
-            if (null!=ois) try {ois.close();} catch (IOException e) {e.printStackTrace();}
-            if (null!=fis) try {fis.close();} catch (IOException e) {e.printStackTrace();}
+            if (null!=ois) try {ois.close();} catch (IOException e) {logger.error(e.getMessage(), e);}
+            if (null!=fis) try {fis.close();} catch (IOException e) {logger.error(e.getMessage(), e);}
         }
     }
 
@@ -142,7 +142,7 @@ public class RsaUtil {
             //执行加密操作
             return cipher.doFinal(buff);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("RSA加密失败,失败原因:"+e.getMessage());
         }
     }
@@ -171,7 +171,7 @@ public class RsaUtil {
             //执行加密操作
             return cipher.doFinal(buff);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("RSA加密失败,失败原因:"+e.getMessage());
         }
     }
@@ -200,7 +200,7 @@ public class RsaUtil {
             //执行加密操作
             return cipher.doFinal(buff);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("RSA加密失败,失败原因:"+e.getMessage());
         }
     }
@@ -229,7 +229,7 @@ public class RsaUtil {
             //执行加密操作
             return cipher.doFinal(buff);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("RSA加密失败,失败原因:"+e.getMessage());
         }
     }
@@ -253,7 +253,7 @@ public class RsaUtil {
             signature.update(buff);
             return signature.sign();
         } catch(Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("RSA生成签名数据失败,失败原因:"+e.getMessage());
         }
     }
@@ -277,7 +277,7 @@ public class RsaUtil {
             signature.update(buff);
             return signature.verify(sign);
         } catch(Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
             throw new SecurityException("RSA校验签名数据失败,失败原因:"+e.getMessage());
         }
     }
