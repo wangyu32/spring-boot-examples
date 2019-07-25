@@ -23,9 +23,7 @@ import javax.jws.WebService;
 @Slf4j
 @WebService(serviceName = "WebServiceAdapter", targetNamespace = "http://adapter.entrance.finance.baiwang.com")
 @Component
-public class WebServiceAdapter
-        extends AbstractAdapter
-{
+public class WebServiceAdapter{
 
     @Autowired
     private SignatureValidateService signatureValidateService;

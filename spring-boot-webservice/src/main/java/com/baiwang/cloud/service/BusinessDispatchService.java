@@ -10,11 +10,16 @@ import com.baiwang.cloud.model.business.common.BusinessResponse;
 import com.baiwang.cloud.model.factory.SignatureFactory;
 import com.baiwang.cloud.model.sign.Signature;
 import com.baiwang.cloud.service.business.BusinessService;
+import com.baiwang.cloud.service.validate.CertificateValidateService;
 import com.baiwang.cloud.util.JaxbUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.security.PublicKey;
@@ -26,13 +31,39 @@ import java.security.PublicKey;
  */
 @Slf4j
 @Component
-public class BusinessDispatchService {
+public class BusinessDispatchService implements ApplicationContextAware {
 
     @Autowired
     private RasConfig rasConfig;
 
     @Autowired
     private BusinessRegisterService businessRegisterService;
+
+    private ApplicationContext context;
+
+    @Autowired
+    private CertificateValidateService certificateValidateService;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.context = applicationContext;
+    }
+
+    /**
+     * 启动时初始化
+     */
+    @PostConstruct
+    public void init() throws IOException {
+        //校验证书文件
+        checkResConfig();
+    }
+
+    //校验证书文件
+    private void checkResConfig() throws IOException {
+        if(!certificateValidateService.exist()){
+            throw new RuntimeException("证书文件不存在");
+        }
+    }
 
     public BusinessResponse doBusiness(Interface interfaceFromXml) {
         String interfaceCode = interfaceFromXml.getGlobalInfo().getInterfaceCode();
