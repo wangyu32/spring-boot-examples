@@ -1,5 +1,6 @@
 package com.baiwang.cloud.model.business.cljg.response;
 
+import com.baiwang.cloud.model.business.common.BusinessResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @lombok.Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CljgResponse {
+public class CljgResponse extends BusinessResponse {
 
     //响应码
     @XmlElement(name = "code")

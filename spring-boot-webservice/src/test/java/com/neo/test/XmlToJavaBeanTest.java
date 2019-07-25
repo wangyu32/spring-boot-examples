@@ -7,10 +7,10 @@ import com.baiwang.cloud.model.base.Interface;
 import com.baiwang.cloud.model.factory.InterfaceFactory;
 import com.baiwang.cloud.model.business.fpcx.request.FpcxRequest;
 import com.baiwang.cloud.model.business.fpcx.response.FpcxResponse;
-import com.baiwang.cloud.model.business.yhdzjg.request.YhdzJgRequest;
-import com.baiwang.cloud.model.business.yhdzjg.response.YhdzJgResponse;
-import com.baiwang.cloud.model.business.yhdztj.request.YhdzTjRequest;
-import com.baiwang.cloud.model.business.yhdztj.response.YhdzTjResponse;
+import com.baiwang.cloud.model.business.yhdzjg.request.YhdzjgRequest;
+import com.baiwang.cloud.model.business.yhdzjg.response.YhdzjgResponse;
+import com.baiwang.cloud.model.business.yhdz.request.YhdzRequest;
+import com.baiwang.cloud.model.business.yhdz.response.YhdzResponse;
 import com.baiwang.cloud.model.factory.SignatureFactory;
 import com.baiwang.cloud.model.sign.Signature;
 import com.baiwang.cloud.model.business.cljg.request.CljgRequest;
@@ -72,7 +72,7 @@ public class XmlToJavaBeanTest {
                 "    </Data>\n" +
                 "</response>";
         System.out.println(xml);
-        YhdzJgResponse bean = JaxbUtil.xmlToBean(xml, YhdzJgResponse.class);
+        YhdzjgResponse bean = JaxbUtil.xmlToBean(xml, YhdzjgResponse.class);
         System.out.println(bean);
         System.out.println(JaxbUtil.beanToXml(bean));
     }
@@ -90,7 +90,7 @@ public class XmlToJavaBeanTest {
                 "    </Data>\n" +
                 "</response>";
         System.out.println(xml);
-        YhdzJgResponse bean = JaxbUtil.xmlToBean(xml, YhdzJgResponse.class);
+        YhdzjgResponse bean = JaxbUtil.xmlToBean(xml, YhdzjgResponse.class);
         System.out.println(bean);
         System.out.println(JaxbUtil.beanToXml(bean));
     }
@@ -101,7 +101,7 @@ public class XmlToJavaBeanTest {
                 "\t<DZLSH>对账流水号</DZLSH>\n" +
                 "</REQUEST_YHDZ_JG>\n";
         System.out.println(xml);
-        YhdzJgRequest bean = JaxbUtil.xmlToBean(xml, YhdzJgRequest.class);
+        YhdzjgRequest bean = JaxbUtil.xmlToBean(xml, YhdzjgRequest.class);
         System.out.println(bean);
         System.out.println(JaxbUtil.beanToXml(bean));
     }
@@ -113,7 +113,7 @@ public class XmlToJavaBeanTest {
                 "<message>成功</message>\n" +
                 "</response>\n";
         System.out.println(xml);
-        YhdzTjResponse bean = JaxbUtil.xmlToBean(xml, YhdzTjResponse.class);
+        YhdzResponse bean = JaxbUtil.xmlToBean(xml, YhdzResponse.class);
         System.out.println(bean);
         System.out.println(JaxbUtil.beanToXml(bean));
     }
@@ -137,7 +137,7 @@ public class XmlToJavaBeanTest {
                 "    </DZMXS>\n" +
                 "</REQUEST_YHDZ_TJ>";
         System.out.println(xml);
-        YhdzTjRequest bean = JaxbUtil.xmlToBean(xml, YhdzTjRequest.class);
+        YhdzRequest bean = JaxbUtil.xmlToBean(xml, YhdzRequest.class);
         System.out.println(bean);
         System.out.println(JaxbUtil.beanToXml(bean));
     }

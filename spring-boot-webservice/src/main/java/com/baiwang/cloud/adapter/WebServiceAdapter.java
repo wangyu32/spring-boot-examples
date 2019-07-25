@@ -4,7 +4,6 @@ import com.baiwang.cloud.model.base.Interface;
 import com.baiwang.cloud.model.sign.Signature;
 import com.baiwang.cloud.model.validate.ValidateResult;
 import com.baiwang.cloud.service.BusinessDispatchService;
-import com.baiwang.cloud.service.business.BusinessService;
 import com.baiwang.cloud.service.validate.InterfaceValidateService;
 import com.baiwang.cloud.service.validate.SignatureValidateService;
 import com.baiwang.cloud.util.NullUtil;
@@ -65,10 +64,8 @@ public class WebServiceAdapter
 
         //业务报文
         Interface interfaceFromXml = (Interface)validateResult.getObject();
-
-        Object object = this.businessDispatchService.doBusiness(interfaceFromXml);
-
-        return "";
+        Signature signatureResponse = this.businessDispatchService.doBusinessSignature(interfaceFromXml);
+        return signatureResponse.toXml();
     }
 
     private String failed(String message){

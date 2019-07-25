@@ -14,6 +14,8 @@ public enum BizErrorEnum {
     SIGNATURE_FAILED("9004", "验签失败"),
     BUSINESS_MESSAGE_FORMAT_ERROR("9005", "业务报文格式错误"),
     INTERFACE_CODE_ERROR("9006", "接口编码错误"),
+    RESPONESE_MESSAGE_BUILD_ERROR("9007", "响应报文拼装错误"),
+    SYSTEM_ERROR("9008", "系统错误"),
 //    MESSAGE_FORMAT_ERROR("9006", ""),
 //    MESSAGE_FORMAT_ERROR("9006", ""),
     SUCCESS("0000", "成功");

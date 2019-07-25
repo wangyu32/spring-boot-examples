@@ -1,4 +1,4 @@
-package com.baiwang.cloud.model.business.yhdztj.request;
+package com.baiwang.cloud.model.business.yhdz.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

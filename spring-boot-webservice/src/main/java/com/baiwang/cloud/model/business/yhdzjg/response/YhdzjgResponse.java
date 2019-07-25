@@ -1,5 +1,6 @@
 package com.baiwang.cloud.model.business.yhdzjg.response;
 
+import com.baiwang.cloud.model.business.common.BusinessResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @lombok.Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class YhdzJgResponse {
+public class YhdzjgResponse extends BusinessResponse {
 
     //响应码，0000成功 1004 报文接受收失败
     @XmlElement(name = "code")

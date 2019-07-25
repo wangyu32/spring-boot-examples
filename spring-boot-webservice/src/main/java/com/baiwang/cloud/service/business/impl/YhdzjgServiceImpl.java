@@ -1,16 +1,14 @@
 package com.baiwang.cloud.service.business.impl;
 
 import com.baiwang.cloud.enums.BizErrorEnum;
-import com.baiwang.cloud.enums.CurrencyEnum;
-import com.baiwang.cloud.enums.FpcxEnum;
+import com.baiwang.cloud.enums.YhdzjgEnum;
 import com.baiwang.cloud.enums.InterfaceEnum;
 import com.baiwang.cloud.model.base.Interface;
+import com.baiwang.cloud.model.business.yhdzjg.request.YhdzjgRequest;
+import com.baiwang.cloud.model.business.yhdzjg.response.YhdzjgResponse;
+import com.baiwang.cloud.model.business.yhdzjg.response.Data;
 import com.baiwang.cloud.model.business.common.BusinessResponse;
-import com.baiwang.cloud.model.business.common.Fpmx;
-import com.baiwang.cloud.model.business.common.Fpmxs;
-import com.baiwang.cloud.model.business.fpcx.request.FpcxRequest;
-import com.baiwang.cloud.model.business.fpcx.response.Data;
-import com.baiwang.cloud.model.business.fpcx.response.FpcxResponse;
+import com.baiwang.cloud.model.business.yhdzjg.response.Yhmx;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.business.FpcxService;
 import com.baiwang.cloud.util.JaxbUtil;
@@ -31,7 +29,7 @@ import java.util.Random;
  */
 @Slf4j
 @Service
-public class FpcxServiceImpl implements FpcxService {
+public class YhdzjgServiceImpl implements FpcxService {
 
     @Autowired
     private BusinessRegisterService businessRegisterService;
@@ -39,7 +37,7 @@ public class FpcxServiceImpl implements FpcxService {
     //每个具体业务处理接口均需要注册
     @PostConstruct
     public void register() {
-        businessRegisterService.register(InterfaceEnum.FPCX, this, FpcxRequest.class, FpcxResponse.class);
+        businessRegisterService.register(InterfaceEnum.CLJG, this, YhdzjgRequest.class, YhdzjgResponse.class);
     }
 
     @Override
@@ -49,9 +47,9 @@ public class FpcxServiceImpl implements FpcxService {
         //业务报文
         String content = interfaceFromXml.getData().getContent();
 
-        FpcxResponse response = null;
+        YhdzjgResponse response = null;
         try {
-            FpcxRequest request = JaxbUtil.xmlToBean(content, FpcxRequest.class);
+            YhdzjgRequest request = JaxbUtil.xmlToBean(content, YhdzjgRequest.class);
             //TODO 具体业务处理
 
             response = success();
@@ -59,25 +57,16 @@ public class FpcxServiceImpl implements FpcxService {
 
             Random random = new Random();
             int size = random.nextInt(3) + 1;
-            List<Fpmx> list = new ArrayList<>(size);
+            List<Yhmx> list = new ArrayList<>(size);
             for (int i = 0; i < size; i++) {
-                Fpmx fpmx = new Fpmx();
-                fpmx.setFpdm("100020003000");
-                fpmx.setFphm("11112222");
-                fpmx.setZje("100.0");
-                fpmx.setJe("10.0");
-                fpmx.setYhzh("北京银行 12345678909876");
-                fpmx.setFpxzm("http://www.baidu.com");
-                list.add(fpmx);
+                Yhmx yhmx = new Yhmx();
+                yhmx.setQqlsh(System.currentTimeMillis() + "");
+                yhmx.setErrcode(YhdzjgEnum.SUCCESS.getCode());
+                list.add(yhmx);
             }
-            Fpmxs fpmxs = new Fpmxs();
-            fpmxs.setSize(size);
-            fpmxs.setFpmx(list);
             Data data = new Data();
-            data.setBb(CurrencyEnum.CNY.name());
-            data.setQqlsh(request.getQqlsh());
-            data.setPtlsh(System.currentTimeMillis() + "");
-            data.setFpmxs(fpmxs);
+            data.setSize(size);
+            data.setYhmx(list);
             response.setData(data);
         } catch (JAXBException e) {
             log.error(BizErrorEnum.MESSAGE_FORMAT_ERROR.getMessage(), e);
@@ -87,14 +76,14 @@ public class FpcxServiceImpl implements FpcxService {
         return response;
     }
 
-    private FpcxResponse success(){
-        FpcxResponse response = new FpcxResponse();
-        response.setCode(FpcxEnum.SUCCESS.getCode());
+    private YhdzjgResponse success(){
+        YhdzjgResponse response = new YhdzjgResponse();
+        response.setCode(YhdzjgEnum.SUCCESS.getCode());
         return response;
     }
 
-    private FpcxResponse failed(FpcxEnum itemEnum){
-        FpcxResponse response = new FpcxResponse();
+    private YhdzjgResponse failed(YhdzjgEnum itemEnum){
+        YhdzjgResponse response = new YhdzjgResponse();
         response.setCode(itemEnum.getCode());
         return response;
     }

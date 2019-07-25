@@ -1,5 +1,6 @@
-package com.baiwang.cloud.model.business.yhdztj.request;
+package com.baiwang.cloud.model.business.yhdz.request;
 
+import com.baiwang.cloud.model.business.common.BusinessRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class YhdzTjRequest {
+public class YhdzRequest extends BusinessRequest {
 
     //对账流水号
     @XmlElement(name = "DZLSH")

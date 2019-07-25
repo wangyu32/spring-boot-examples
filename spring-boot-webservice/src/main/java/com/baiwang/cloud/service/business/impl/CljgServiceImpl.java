@@ -1,16 +1,13 @@
 package com.baiwang.cloud.service.business.impl;
 
-import com.baiwang.cloud.enums.BizErrorEnum;
-import com.baiwang.cloud.enums.CurrencyEnum;
-import com.baiwang.cloud.enums.FpcxEnum;
-import com.baiwang.cloud.enums.InterfaceEnum;
+import com.baiwang.cloud.enums.*;
 import com.baiwang.cloud.model.base.Interface;
+import com.baiwang.cloud.model.business.cljg.request.CljgRequest;
+import com.baiwang.cloud.model.business.cljg.response.CljgResponse;
+import com.baiwang.cloud.model.business.cljg.response.Data;
 import com.baiwang.cloud.model.business.common.BusinessResponse;
 import com.baiwang.cloud.model.business.common.Fpmx;
 import com.baiwang.cloud.model.business.common.Fpmxs;
-import com.baiwang.cloud.model.business.fpcx.request.FpcxRequest;
-import com.baiwang.cloud.model.business.fpcx.response.Data;
-import com.baiwang.cloud.model.business.fpcx.response.FpcxResponse;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.business.FpcxService;
 import com.baiwang.cloud.util.JaxbUtil;
@@ -31,7 +28,7 @@ import java.util.Random;
  */
 @Slf4j
 @Service
-public class FpcxServiceImpl implements FpcxService {
+public class CljgServiceImpl implements FpcxService {
 
     @Autowired
     private BusinessRegisterService businessRegisterService;
@@ -39,7 +36,7 @@ public class FpcxServiceImpl implements FpcxService {
     //每个具体业务处理接口均需要注册
     @PostConstruct
     public void register() {
-        businessRegisterService.register(InterfaceEnum.FPCX, this, FpcxRequest.class, FpcxResponse.class);
+        businessRegisterService.register(InterfaceEnum.CLJG, this, CljgRequest.class, CljgResponse.class);
     }
 
     @Override
@@ -49,9 +46,9 @@ public class FpcxServiceImpl implements FpcxService {
         //业务报文
         String content = interfaceFromXml.getData().getContent();
 
-        FpcxResponse response = null;
+        CljgResponse response = null;
         try {
-            FpcxRequest request = JaxbUtil.xmlToBean(content, FpcxRequest.class);
+            CljgRequest request = JaxbUtil.xmlToBean(content, CljgRequest.class);
             //TODO 具体业务处理
 
             response = success();
@@ -64,9 +61,6 @@ public class FpcxServiceImpl implements FpcxService {
                 Fpmx fpmx = new Fpmx();
                 fpmx.setFpdm("100020003000");
                 fpmx.setFphm("11112222");
-                fpmx.setZje("100.0");
-                fpmx.setJe("10.0");
-                fpmx.setYhzh("北京银行 12345678909876");
                 fpmx.setFpxzm("http://www.baidu.com");
                 list.add(fpmx);
             }
@@ -74,9 +68,7 @@ public class FpcxServiceImpl implements FpcxService {
             fpmxs.setSize(size);
             fpmxs.setFpmx(list);
             Data data = new Data();
-            data.setBb(CurrencyEnum.CNY.name());
             data.setQqlsh(request.getQqlsh());
-            data.setPtlsh(System.currentTimeMillis() + "");
             data.setFpmxs(fpmxs);
             response.setData(data);
         } catch (JAXBException e) {
@@ -87,14 +79,14 @@ public class FpcxServiceImpl implements FpcxService {
         return response;
     }
 
-    private FpcxResponse success(){
-        FpcxResponse response = new FpcxResponse();
-        response.setCode(FpcxEnum.SUCCESS.getCode());
+    private CljgResponse success(){
+        CljgResponse response = new CljgResponse();
+        response.setCode(CljgEnum.SUCCESS.getCode());
         return response;
     }
 
-    private FpcxResponse failed(FpcxEnum itemEnum){
-        FpcxResponse response = new FpcxResponse();
+    private CljgResponse failed(CljgEnum itemEnum){
+        CljgResponse response = new CljgResponse();
         response.setCode(itemEnum.getCode());
         return response;
     }

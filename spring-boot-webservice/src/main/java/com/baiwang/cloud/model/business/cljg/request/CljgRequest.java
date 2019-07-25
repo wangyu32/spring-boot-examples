@@ -1,5 +1,6 @@
 package com.baiwang.cloud.model.business.cljg.request;
 
+import com.baiwang.cloud.model.business.common.BusinessRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CljgRequest {
+public class CljgRequest extends BusinessRequest {
 
     //请求流水号
     @XmlElement(name = "QQLSH")

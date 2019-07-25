@@ -1,6 +1,7 @@
 package com.baiwang.cloud.service.business;
 
 import com.baiwang.cloud.model.base.Interface;
+import com.baiwang.cloud.model.business.common.BusinessResponse;
 
 /**
  * @Description 业务处理接口
@@ -9,6 +10,6 @@ import com.baiwang.cloud.model.base.Interface;
  */
 public interface BusinessService {
 
-    Object doBusiness(Interface interfaceFromXml);
+    BusinessResponse doBusiness(Interface interfaceFromXml);
 
 }
