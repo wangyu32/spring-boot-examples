@@ -34,4 +34,50 @@ public class Signature {
     @XmlElement(name = "Object")
     private Object object;
 
+    public String checkNullable(){
+        if(this.signatureValue == null || this.signatureValue.trim().equals("")){
+            return "签名值不能为空";
+        }
+
+        if(this.object == null || this.object.getSignedData() == null
+                || this.getObject().getSignedData().trim().equals("")){
+            return "被签名内容不能为空";
+        }
+
+        return null;
+    }
+
+    public String toXml(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        sb.append("<Signature xmlns=\"http://www.w3.org/2000/09/xmldsig#\">");
+
+        sb.append("<SignedInfo>");
+        sb.append("<SignatureMethod Algorithm=");
+        sb.append("\"").append(this.signedInfo.getSignatureMethod().getAlgorithm()).append("\"").append(" />");
+        sb.append("<Reference URI=");
+        sb.append("\"").append(this.signedInfo.getReference().getUri()).append("\"").append(" >");
+        sb.append("</Reference>");
+        sb.append("</SignedInfo>");
+
+        sb.append("<SignatureValue>");
+        sb.append(signatureValue);
+        sb.append("</SignatureValue>");
+
+        sb.append("<KeyInfo>");
+        sb.append("<KeyName>");
+        sb.append("</KeyName>");
+        sb.append("</KeyInfo>");
+
+        sb.append("<Object id=");
+        sb.append("\"").append(this.object.getId()).append("\"").append(" >");
+        sb.append("<SignedData>");
+        sb.append(this.object.getSignedData());
+        sb.append("</SignedData>");
+        sb.append("</Object>");
+
+        sb.append("</Signature>");
+        return sb.toString();
+    }
+
 }

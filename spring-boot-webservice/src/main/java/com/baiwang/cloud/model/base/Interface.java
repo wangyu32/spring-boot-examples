@@ -32,4 +32,28 @@ public class Interface {
         }
         this.data.setContent(content);
     }
+
+    public String toXml(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        sb.append("<interface>");
+        sb.append("<globalInfo>");
+        sb.append("<version>");
+        sb.append(this.globalInfo.getVersion());
+        sb.append("</version>");
+        sb.append("<interfaceCode>");
+        sb.append(this.globalInfo.getInterfaceCode());
+        sb.append("</interfaceCode>");
+        sb.append("</globalInfo>");
+        sb.append("<Data>");
+        sb.append("<content>");
+        sb.append("<![CDATA[");
+        sb.append(this.getData().getContent());
+        sb.append("]]>");
+        sb.append("</content>");
+        sb.append("</Data>");
+        sb.append("</interface>");
+        return sb.toString();
+    }
+
 }

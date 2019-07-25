@@ -78,6 +78,7 @@ public class JaxbUtil {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.setProperty(Marshaller.JAXB_ENCODING, charset);
         marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+//        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
         StringWriter writer = new StringWriter();
         marshaller.marshal(object, writer);
         String xml = writer.toString();

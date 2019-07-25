@@ -1,5 +1,6 @@
 package com.baiwang.cloud.model.business.fpcx.request;
 
+import com.baiwang.cloud.model.business.common.BusinessRequest;
 import com.baiwang.cloud.model.business.common.Fpmxs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FpcxRequest {
+public class FpcxRequest extends BusinessRequest {
 
     //请求流水号
     @XmlElement(name = "QQLSH")

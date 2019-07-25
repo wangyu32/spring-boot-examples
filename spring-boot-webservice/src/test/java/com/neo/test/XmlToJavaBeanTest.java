@@ -11,10 +11,13 @@ import com.baiwang.cloud.model.business.yhdzjg.request.YhdzJgRequest;
 import com.baiwang.cloud.model.business.yhdzjg.response.YhdzJgResponse;
 import com.baiwang.cloud.model.business.yhdztj.request.YhdzTjRequest;
 import com.baiwang.cloud.model.business.yhdztj.response.YhdzTjResponse;
+import com.baiwang.cloud.model.factory.SignatureFactory;
 import com.baiwang.cloud.model.sign.Signature;
 import com.baiwang.cloud.model.business.cljg.request.CljgRequest;
 import com.baiwang.cloud.model.business.cljg.response.CljgResponse;
 import com.baiwang.cloud.util.JaxbUtil;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -335,7 +338,15 @@ public class XmlToJavaBeanTest {
                         "</REQUEST_FPCXJS>";
         try {
             System.out.println(content);
-            String base64Encrypt = Base64Util.encrypt(content);
+            content = content.replaceAll("(\\\n)", "");
+            Interface instance = InterfaceFactory.getFpcxDefaultInterfaceInstance(content);
+//            String interfaceXml = JaxbUtil.beanToXml(instance);
+            String interfaceXml = instance.toXml();
+            String interfaceXml2 = instance.toXml();
+            System.out.println("instanceToXml : \n" + interfaceXml2);
+            System.out.println("beanToXml : \n" + interfaceXml);
+//            String base64Encrypt = Base64Util.encrypt(interfaceXml);
+            String base64Encrypt = StringUtil.byteToBase(interfaceXml.getBytes());
             System.out.println("base64 加密 : \n" + base64Encrypt);
             String base64Decrypt = Base64Util.decrypt(base64Encrypt);
             System.out.println("base64 解密 : \n" + base64Decrypt);
@@ -343,16 +354,65 @@ public class XmlToJavaBeanTest {
             RsaUtil rsaUtil = RsaUtil.getTestInstance();
             PublicKey publicKey = rsaUtil.getPublicKey();
             PrivateKey privateKey = rsaUtil.getPrivateKey();
-            byte[] bytes = rsaUtil.rsaPrivateEncrypt(base64Encrypt.getBytes(), privateKey);
-            String stringPrivateEncrypt = StringUtil.byteToBase(bytes);
-            System.out.println("私钥加密后的数据："+ stringPrivateEncrypt);
+//            byte[] bytes = rsaUtil.rsaPrivateEncrypt(base64Encrypt.getBytes(), privateKey);
+
+            //签名
+            byte[] base64EncryptBytes = base64Encrypt.getBytes();//签名前
+            byte[] bytes = rsaUtil.buildSign(base64EncryptBytes, privateKey);//签名后
+            String stringPrivateSign = StringUtil.byteToBase(bytes);
+//            String stringPrivateSign = Base64Util.byteToBase(bytes);
+            System.out.println("私钥签名后的数据："+ stringPrivateSign);
+
+            boolean flag = false;
+            //验签
+            flag = rsaUtil.verifySign(base64Encrypt.getBytes(), bytes, publicKey);
+            flag = rsaUtil.verifySign(base64Encrypt.getBytes(), new String(bytes, "gbk").getBytes("gbk"), publicKey);
+            flag = rsaUtil.verifySign(base64Encrypt.getBytes(), StringUtil.baseToByte(stringPrivateSign), publicKey);
+
+            String bbbb = new String(bytes);
+            String aaaa = Base64Util.byteToBase(bytes);
+            Signature signature = SignatureFactory.getDefaultSignatureInstance(stringPrivateSign, base64Encrypt);
+
+            //模拟发送
+            System.out.println("signatureXml : \n" + signature.toXml());
+            String xml = signature.toXml();
+            String signatureValueInXml = xml.substring(xml.indexOf("<SignatureValue>") + "<SignatureValue>".length(), xml.indexOf("</SignatureValue>"));
+            String signedDataInXml = xml.substring(xml.indexOf("<SignedData>") + "<SignedData>".length(), xml.indexOf("</SignedData>"));
+            System.out.println(signatureValueInXml.equals(stringPrivateSign));
+            System.out.println(signedDataInXml.equals(base64Encrypt));
+            boolean flag2 = rsaUtil.verifySign(signedDataInXml.getBytes(), StringUtil.baseToByte(signatureValueInXml), publicKey);
+
+//            String signatureXml = JaxbUtil.beanToXml(signature);
+            String signatureXml = signature.toXml();
+            System.out.println("signatureXml : \n" + signatureXml);
+//            signatureXml = signatureXml.substring(0, signatureXml.indexOf("<SignedData>") + "<SignedData>".length()) + base64Encrypt + signatureXml.substring(signatureXml.indexOf("</SignedData>"));
+//            System.out.println("signatureXml : \n" + signatureXml);
+
+            //模拟接收
+            Signature signatureReceive = JaxbUtil.xmlToBean(signatureXml, Signature.class);
+            String signatureXmlReceive = JaxbUtil.beanToXml(signatureReceive);
+            System.out.println(signatureXml.equals(signatureXmlReceive));
+
+            //签名值
+            String signatureValue = signatureReceive.getSignatureValue();
+            System.out.println("接收端签名值 signatureValue=\n" + signatureValue);
+            //被签名数据
+            String signedData = signatureReceive.getObject().getSignedData();
+            System.out.println("接收被签名数据 signedData=\n" + signedData);
+
+            Document document = DocumentHelper.parseText(signatureXml);
+            String value = (String)document.getRootElement().element("SignatureValue").getData();
+            String data = (String) document.getRootElement().element("Object").element("SignedData").getData();
+            flag = rsaUtil.verifySign(data.getBytes(), value.getBytes(), publicKey);
 
 
-            Interface instance = InterfaceFactory.getFpcxDefaultInterfaceInstance(base64Encrypt);
-            String xml = JaxbUtil.beanToXml(instance);
-            System.out.println("beanToXml : \n" + xml);
+            //公钥验签
+            boolean signatureFlag = rsaUtil.verifySign(signatureValue.getBytes(),signedData.getBytes(),publicKey);
+            System.out.println("校验签名数据后的数据："+signatureFlag);
+            String signedDataDecrypt = Base64Util.decrypt(signedData);
+            System.out.println("signedData base64 解密 : \n" + signedDataDecrypt);
 
-            FpcxRequest bean = JaxbUtil.xmlToBean(xml, FpcxRequest.class);
+            Interface bean = JaxbUtil.xmlToBean(signedDataDecrypt, Interface.class);
             System.out.println(bean);
         } catch (JAXBException e) {
             e.printStackTrace();

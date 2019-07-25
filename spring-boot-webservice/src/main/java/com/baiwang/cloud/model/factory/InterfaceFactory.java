@@ -13,9 +13,6 @@ import com.baiwang.cloud.model.base.Interface;
 public class InterfaceFactory {
 
     private static final String DEFAULT_VERSION = "1.0";
-    private static final String CDATA_PREFIX = "<![CDATA[";
-    private static final String CDATA_SUFFIX = "]]>";
-
 
     private InterfaceFactory(){
     };
@@ -35,6 +32,11 @@ public class InterfaceFactory {
         return instance;
     }
 
+    /**
+     * 生成接口实体
+     * @param version 接口版本号
+     * @return
+     */
     public static Interface getInterfaceInstance(String version){
         GlobalInfo globalInfo = new GlobalInfo();
         Data data = new Data();
@@ -42,15 +44,28 @@ public class InterfaceFactory {
         return instance;
     }
 
-    public static Interface getInterfaceInstance(String version, String interfaceCode){
-        GlobalInfo globalInfo = new GlobalInfo(version, interfaceCode);
+    /**
+     * 生成接口实体
+     * @param version 版本号
+     * @param interfaceEnum 接口编码枚举类
+     * @return
+     */
+    public static Interface getInterfaceInstance(String version, InterfaceEnum interfaceEnum){
+        GlobalInfo globalInfo = new GlobalInfo(version, interfaceEnum.name());
         Data data = new Data();
         Interface instance = new Interface(globalInfo, data);
         return instance;
     }
 
-    public static Interface getInterfaceInstance(String version, String interfaceCode, String content){
-        GlobalInfo globalInfo = new GlobalInfo(version, interfaceCode);
+    /**
+     * 生成接口实体
+     * @param version 版本号
+     * @param interfaceEnum 接口编码枚举类
+     * @param content 业务报文
+     * @return
+     */
+    public static Interface getInterfaceInstance(String version, InterfaceEnum interfaceEnum, String content){
+        GlobalInfo globalInfo = new GlobalInfo(version, interfaceEnum.name());
         Data data = new Data(content);
         Interface instance = new Interface(globalInfo, data);
         return instance;

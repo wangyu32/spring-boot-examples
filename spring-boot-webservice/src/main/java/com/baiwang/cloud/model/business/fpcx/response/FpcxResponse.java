@@ -1,5 +1,6 @@
 package com.baiwang.cloud.model.business.fpcx.response;
 
+import com.baiwang.cloud.model.business.common.BusinessResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,7 @@ import javax.xml.bind.annotation.*;
 @lombok.Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FpcxResponse {
+public class FpcxResponse extends BusinessResponse {
 
     //响应码
     @XmlElement(name = "code")

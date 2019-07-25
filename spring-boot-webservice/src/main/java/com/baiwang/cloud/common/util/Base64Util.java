@@ -26,4 +26,15 @@ public class Base64Util {
         return new String(new BASE64Decoder().decodeBuffer(key));
     }
 
+    /**
+     * 将byte[]数据编码为base64字符串
+     * @param byteData 原始数据
+     * @return String base64字符串
+     * @author luqiang
+     * @date 2018年11月18日
+     */
+    public static String byteToBase(byte[] byteData) throws IOException {
+        BASE64Encoder encoder = new BASE64Encoder();
+        return encoder.encode(byteData);
+    }
 }
