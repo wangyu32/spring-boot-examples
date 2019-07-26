@@ -2,6 +2,7 @@ package com.baiwang.cloud.service;
 
 import com.baiwang.cloud.common.util.Base64Util;
 import com.baiwang.cloud.common.util.RsaUtil;
+import com.baiwang.cloud.common.util.StringUtil;
 import com.baiwang.cloud.config.RasConfig;
 import com.baiwang.cloud.enums.BizErrorEnum;
 import com.baiwang.cloud.enums.InterfaceEnum;
@@ -78,14 +79,14 @@ public class BusinessDispatchService implements ApplicationContextAware {
             //业务处理结果
             BusinessResponse businessResponse = doBusiness(interfaceFromXml);
             String businessResponseXml = JaxbUtil.beanToXml(businessResponse);
+            //返回业务报文base64加密
             String businessResponseXmlEncrypt = Base64Util.encrypt(businessResponseXml);
 
             RsaUtil rsaUtil = new RsaUtil(rasConfig.getFilePath() + rasConfig.getFileName(), rasConfig.getFilePassword());
             PublicKey publicKey = rsaUtil.getPublicKey();
-//            byte[] bytes = rsaUtil.buildSign(businessResponseXmlEncrypt.getBytes(), publicKey);
-
+            byte[] bytes = rsaUtil.rsaPublicEncrypt(businessResponseXmlEncrypt.getBytes(), publicKey);
+            String signedData = StringUtil.byteToBase(bytes);
             String signatureValue = null;
-            String signedData = businessResponseXmlEncrypt;
             signatureResponse = SignatureFactory.getDefaultSignatureInstance(signatureValue, signedData);
         } catch (JAXBException e) {
             log.error(BizErrorEnum.RESPONESE_MESSAGE_BUILD_ERROR.getMessage(), e);
