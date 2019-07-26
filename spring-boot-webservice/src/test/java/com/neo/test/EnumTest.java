@@ -1,7 +1,7 @@
 package com.neo.test;
 
-import com.baiwang.cloud.common.enums.CurrencyEnum;
-import com.baiwang.cloud.common.enums.InterfaceEnum;
+import com.baiwang.cloud.common.enums.ws.CurrencyEnum;
+import com.baiwang.cloud.common.enums.ws.InterfaceEnum;
 
 /**
  * @Description

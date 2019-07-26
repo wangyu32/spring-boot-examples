@@ -1,6 +1,6 @@
 package com.baiwang.cloud.service.validate;
 
-import com.baiwang.cloud.common.model.validate.ValidateResult;
+import com.baiwang.cloud.common.model.ws.validate.ValidateResult;
 
 /**
  * @Description 校验抽象类

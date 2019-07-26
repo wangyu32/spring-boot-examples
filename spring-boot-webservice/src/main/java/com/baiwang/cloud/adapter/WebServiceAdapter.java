@@ -1,8 +1,8 @@
 package com.baiwang.cloud.adapter;
 
-import com.baiwang.cloud.common.model.base.Interface;
-import com.baiwang.cloud.common.model.sign.Signature;
-import com.baiwang.cloud.common.model.validate.ValidateResult;
+import com.baiwang.cloud.common.model.ws.base.Interface;
+import com.baiwang.cloud.common.model.ws.sign.Signature;
+import com.baiwang.cloud.common.model.ws.validate.ValidateResult;
 import com.baiwang.cloud.service.BusinessDispatchService;
 import com.baiwang.cloud.service.validate.InterfaceValidateService;
 import com.baiwang.cloud.service.validate.SignatureValidateService;

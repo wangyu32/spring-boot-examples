@@ -1,14 +1,14 @@
 package com.baiwang.cloud.service.business.impl;
 
 import com.baiwang.cloud.common.enums.BizErrorEnum;
-import com.baiwang.cloud.common.enums.YhdzjgEnum;
-import com.baiwang.cloud.common.enums.InterfaceEnum;
-import com.baiwang.cloud.common.model.base.Interface;
-import com.baiwang.cloud.common.model.business.yhdzjg.request.YhdzjgRequest;
-import com.baiwang.cloud.common.model.business.yhdzjg.response.YhdzjgResponse;
-import com.baiwang.cloud.common.model.business.yhdzjg.response.Data;
-import com.baiwang.cloud.common.model.business.common.BusinessResponse;
-import com.baiwang.cloud.common.model.business.yhdzjg.response.Yhmx;
+import com.baiwang.cloud.common.enums.ws.YhdzjgEnum;
+import com.baiwang.cloud.common.enums.ws.InterfaceEnum;
+import com.baiwang.cloud.common.model.ws.base.Interface;
+import com.baiwang.cloud.common.model.ws.business.yhdzjg.request.YhdzjgRequest;
+import com.baiwang.cloud.common.model.ws.business.yhdzjg.response.YhdzjgResponse;
+import com.baiwang.cloud.common.model.ws.business.yhdzjg.response.Data;
+import com.baiwang.cloud.common.model.ws.business.common.BusinessResponse;
+import com.baiwang.cloud.common.model.ws.business.yhdzjg.response.Yhmx;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.business.FpcxService;
 import com.baiwang.cloud.util.JaxbUtil;

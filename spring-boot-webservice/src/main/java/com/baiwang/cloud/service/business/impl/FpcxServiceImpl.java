@@ -1,16 +1,16 @@
 package com.baiwang.cloud.service.business.impl;
 
 import com.baiwang.cloud.common.enums.BizErrorEnum;
-import com.baiwang.cloud.common.enums.CurrencyEnum;
-import com.baiwang.cloud.common.enums.FpcxEnum;
-import com.baiwang.cloud.common.enums.InterfaceEnum;
-import com.baiwang.cloud.common.model.base.Interface;
-import com.baiwang.cloud.common.model.business.common.BusinessResponse;
-import com.baiwang.cloud.common.model.business.common.Fpmx;
-import com.baiwang.cloud.common.model.business.common.Fpmxs;
-import com.baiwang.cloud.common.model.business.fpcx.request.FpcxRequest;
-import com.baiwang.cloud.common.model.business.fpcx.response.Data;
-import com.baiwang.cloud.common.model.business.fpcx.response.FpcxResponse;
+import com.baiwang.cloud.common.enums.ws.CurrencyEnum;
+import com.baiwang.cloud.common.enums.ws.FpcxEnum;
+import com.baiwang.cloud.common.enums.ws.InterfaceEnum;
+import com.baiwang.cloud.common.model.ws.base.Interface;
+import com.baiwang.cloud.common.model.ws.business.common.BusinessResponse;
+import com.baiwang.cloud.common.model.ws.business.common.Fpmx;
+import com.baiwang.cloud.common.model.ws.business.common.Fpmxs;
+import com.baiwang.cloud.common.model.ws.business.fpcx.request.FpcxRequest;
+import com.baiwang.cloud.common.model.ws.business.fpcx.response.Data;
+import com.baiwang.cloud.common.model.ws.business.fpcx.response.FpcxResponse;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.business.FpcxService;
 import com.baiwang.cloud.util.JaxbUtil;
