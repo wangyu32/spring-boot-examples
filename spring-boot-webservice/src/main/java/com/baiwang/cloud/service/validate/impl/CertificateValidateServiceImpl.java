@@ -1,7 +1,7 @@
 package com.baiwang.cloud.service.validate.impl;
 
 import com.baiwang.cloud.config.RasConfig;
-import com.baiwang.cloud.enums.CertificateFileEnum;
+import com.baiwang.cloud.common.enums.CertificateFileEnum;
 import com.baiwang.cloud.service.validate.CertificateValidateService;
 import com.baiwang.cloud.util.NullUtil;
 import lombok.extern.slf4j.Slf4j;

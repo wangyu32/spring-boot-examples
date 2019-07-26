@@ -1,14 +1,12 @@
 package com.baiwang.cloud.service.business.impl;
 
-import com.baiwang.cloud.enums.BizErrorEnum;
-import com.baiwang.cloud.enums.YhdzEnum;
-import com.baiwang.cloud.enums.InterfaceEnum;
-import com.baiwang.cloud.model.base.Interface;
-import com.baiwang.cloud.model.business.yhdz.request.YhdzRequest;
-import com.baiwang.cloud.model.business.yhdz.response.YhdzResponse;
-import com.baiwang.cloud.model.business.common.BusinessResponse;
-import com.baiwang.cloud.model.business.common.Fpmx;
-import com.baiwang.cloud.model.business.common.Fpmxs;
+import com.baiwang.cloud.common.enums.BizErrorEnum;
+import com.baiwang.cloud.common.enums.YhdzEnum;
+import com.baiwang.cloud.common.enums.InterfaceEnum;
+import com.baiwang.cloud.common.model.base.Interface;
+import com.baiwang.cloud.common.model.business.yhdz.request.YhdzRequest;
+import com.baiwang.cloud.common.model.business.yhdz.response.YhdzResponse;
+import com.baiwang.cloud.common.model.business.common.BusinessResponse;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.business.FpcxService;
 import com.baiwang.cloud.util.JaxbUtil;
@@ -18,9 +16,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * @Description

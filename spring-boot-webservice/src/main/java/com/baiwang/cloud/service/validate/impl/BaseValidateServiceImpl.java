@@ -1,7 +1,7 @@
 package com.baiwang.cloud.service.validate.impl;
 
-import com.baiwang.cloud.enums.BizErrorEnum;
-import com.baiwang.cloud.model.validate.ValidateResult;
+import com.baiwang.cloud.common.enums.BizErrorEnum;
+import com.baiwang.cloud.common.model.validate.ValidateResult;
 import com.baiwang.cloud.service.validate.BaseValidateService;
 
 /**

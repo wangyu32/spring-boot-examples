@@ -4,12 +4,12 @@ import com.baiwang.cloud.common.util.Base64Util;
 import com.baiwang.cloud.common.util.RsaUtil;
 import com.baiwang.cloud.common.util.StringUtil;
 import com.baiwang.cloud.config.RasConfig;
-import com.baiwang.cloud.enums.BizErrorEnum;
-import com.baiwang.cloud.enums.InterfaceEnum;
-import com.baiwang.cloud.model.base.Interface;
-import com.baiwang.cloud.model.business.common.BusinessResponse;
-import com.baiwang.cloud.model.factory.SignatureFactory;
-import com.baiwang.cloud.model.sign.Signature;
+import com.baiwang.cloud.common.enums.BizErrorEnum;
+import com.baiwang.cloud.common.enums.InterfaceEnum;
+import com.baiwang.cloud.common.model.base.Interface;
+import com.baiwang.cloud.common.model.business.common.BusinessResponse;
+import com.baiwang.cloud.common.model.factory.SignatureFactory;
+import com.baiwang.cloud.common.model.sign.Signature;
 import com.baiwang.cloud.service.business.BusinessService;
 import com.baiwang.cloud.service.validate.CertificateValidateService;
 import com.baiwang.cloud.util.JaxbUtil;
@@ -84,8 +84,11 @@ public class BusinessDispatchService implements ApplicationContextAware {
 
             RsaUtil rsaUtil = new RsaUtil(rasConfig.getFilePath() + rasConfig.getFileName(), rasConfig.getFilePassword());
             PublicKey publicKey = rsaUtil.getPublicKey();
-            byte[] bytes = rsaUtil.rsaPublicEncrypt(businessResponseXmlEncrypt.getBytes(), publicKey);
-            String signedData = StringUtil.byteToBase(bytes);
+
+            //TODO 被加密长度超过 java.lang.SecurityException: RSA加密失败,失败原因:Data must not be longer than 117 bytes
+//            byte[] bytes = rsaUtil.rsaPublicEncrypt(businessResponseXmlEncrypt.getBytes(), publicKey);
+//            String signedData = StringUtil.byteToBase(bytes);
+            String signedData = businessResponseXmlEncrypt;
             String signatureValue = null;
             signatureResponse = SignatureFactory.getDefaultSignatureInstance(signatureValue, signedData);
         } catch (JAXBException e) {

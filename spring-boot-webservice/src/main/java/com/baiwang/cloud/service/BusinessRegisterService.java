@@ -1,6 +1,6 @@
 package com.baiwang.cloud.service;
 
-import com.baiwang.cloud.enums.InterfaceEnum;
+import com.baiwang.cloud.common.enums.InterfaceEnum;
 import com.baiwang.cloud.service.business.BusinessService;
 import org.springframework.stereotype.Component;
 

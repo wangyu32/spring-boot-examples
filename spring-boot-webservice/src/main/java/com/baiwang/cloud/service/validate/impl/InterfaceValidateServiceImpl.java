@@ -1,12 +1,11 @@
 package com.baiwang.cloud.service.validate.impl;
 
 import com.baiwang.cloud.common.util.Base64Util;
-import com.baiwang.cloud.enums.BizErrorEnum;
-import com.baiwang.cloud.enums.InterfaceEnum;
-import com.baiwang.cloud.model.base.Interface;
-import com.baiwang.cloud.model.business.common.BusinessRequest;
-import com.baiwang.cloud.model.business.fpcx.request.FpcxRequest;
-import com.baiwang.cloud.model.validate.ValidateResult;
+import com.baiwang.cloud.common.enums.BizErrorEnum;
+import com.baiwang.cloud.common.enums.InterfaceEnum;
+import com.baiwang.cloud.common.model.base.Interface;
+import com.baiwang.cloud.common.model.business.common.BusinessRequest;
+import com.baiwang.cloud.common.model.validate.ValidateResult;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.validate.InterfaceValidateService;
 import com.baiwang.cloud.util.JaxbUtil;

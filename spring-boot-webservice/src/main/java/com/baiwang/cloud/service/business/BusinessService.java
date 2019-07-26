@@ -1,7 +1,7 @@
 package com.baiwang.cloud.service.business;
 
-import com.baiwang.cloud.model.base.Interface;
-import com.baiwang.cloud.model.business.common.BusinessResponse;
+import com.baiwang.cloud.common.model.base.Interface;
+import com.baiwang.cloud.common.model.business.common.BusinessResponse;
 
 /**
  * @Description 业务处理接口
