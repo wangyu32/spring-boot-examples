@@ -6,7 +6,7 @@ import com.baiwang.cloud.common.model.ws.validate.ValidateResult;
 import com.baiwang.cloud.service.BusinessDispatchService;
 import com.baiwang.cloud.service.validate.InterfaceValidateService;
 import com.baiwang.cloud.service.validate.SignatureValidateService;
-import com.baiwang.cloud.util.NullUtil;
+import com.baiwang.cloud.common.util.NullUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

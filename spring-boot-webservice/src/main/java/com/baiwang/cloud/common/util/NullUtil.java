@@ -1,4 +1,4 @@
-package com.baiwang.cloud.util;
+package com.baiwang.cloud.common.util;
 
 import java.util.Arrays;
 import java.util.List;

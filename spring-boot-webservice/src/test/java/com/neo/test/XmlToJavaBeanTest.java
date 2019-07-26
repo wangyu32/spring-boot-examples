@@ -15,7 +15,7 @@ import com.baiwang.cloud.common.model.ws.factory.SignatureFactory;
 import com.baiwang.cloud.common.model.ws.sign.Signature;
 import com.baiwang.cloud.common.model.ws.business.cljg.request.CljgRequest;
 import com.baiwang.cloud.common.model.ws.business.cljg.response.CljgResponse;
-import com.baiwang.cloud.util.JaxbUtil;
+import com.baiwang.cloud.common.util.JaxbUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 

@@ -1,4 +1,4 @@
-package com.baiwang.cloud.util;
+package com.baiwang.cloud.common.util;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -78,7 +78,6 @@ public class JaxbUtil {
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.setProperty(Marshaller.JAXB_ENCODING, charset);
         marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-//        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
         StringWriter writer = new StringWriter();
         marshaller.marshal(object, writer);
         String xml = writer.toString();

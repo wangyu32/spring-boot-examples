@@ -3,7 +3,7 @@ package com.baiwang.cloud.service.validate.impl;
 import com.baiwang.cloud.config.RasConfig;
 import com.baiwang.cloud.common.enums.ws.CertificateFileEnum;
 import com.baiwang.cloud.service.validate.CertificateValidateService;
-import com.baiwang.cloud.util.NullUtil;
+import com.baiwang.cloud.common.util.NullUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

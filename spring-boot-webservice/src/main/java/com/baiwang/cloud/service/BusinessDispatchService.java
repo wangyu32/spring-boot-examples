@@ -11,7 +11,7 @@ import com.baiwang.cloud.common.model.ws.factory.SignatureFactory;
 import com.baiwang.cloud.common.model.ws.sign.Signature;
 import com.baiwang.cloud.service.business.BusinessService;
 import com.baiwang.cloud.service.validate.CertificateValidateService;
-import com.baiwang.cloud.util.JaxbUtil;
+import com.baiwang.cloud.common.util.JaxbUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;

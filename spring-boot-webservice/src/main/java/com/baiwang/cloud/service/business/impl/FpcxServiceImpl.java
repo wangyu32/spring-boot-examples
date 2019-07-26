@@ -13,7 +13,7 @@ import com.baiwang.cloud.common.model.ws.business.fpcx.response.Data;
 import com.baiwang.cloud.common.model.ws.business.fpcx.response.FpcxResponse;
 import com.baiwang.cloud.service.BusinessRegisterService;
 import com.baiwang.cloud.service.business.FpcxService;
-import com.baiwang.cloud.util.JaxbUtil;
+import com.baiwang.cloud.common.util.JaxbUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
